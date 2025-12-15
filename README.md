@@ -1,8 +1,11 @@
 # Mask Detection
 
-**Hello guys!**
+<br>
 
-Welcome to my blog. In this article, I want to share my exploration of a mask detection project developed with Flutter. 
+Hello guys!
+
+*Welcome to my blog. In this article, I want to share my exploration of a mask detection project developed with Flutter* 
+*which can be helpful for KYC processes involving user face verification, such as Liveness Detection and Face Recognition.*
 
 <br>
 <br>
@@ -18,6 +21,7 @@ If you would like to test it, please download the APK from the following link :
 ---
 
 <br>
+<br>
 
 ## Technologies Used
 
@@ -26,6 +30,10 @@ If you would like to test it, please download the APK from the following link :
 - **Mask Detection Model**: Existing ML Model public by https://github.com/Cindyalifia/tflite-face-mask-detection-android/
 - **Google MLKit Face Detection**: Official Google ML for detect face from rgb image
 - **Camera Plugin**: Flutter plugin (`camera`) for accessing device camera and capturing frames.
+
+
+<br>
+<br>
 
 ## Integrating the Model
 
@@ -207,6 +215,8 @@ data class FaceContour (
 
 ```
 
+<br>
+<br>
 
 ## Implementing Real Time Face Mask Detection
 
@@ -563,12 +573,21 @@ class _MaskDetectionViewState extends State<MaskDetectionView> {
 }
 ```
 
+<br>
+<br>
+
 ## Conclusion
-In this blog, I aimed to share my exploration of Mask Detection, which can be helpful for KYC processes involving user face verification, such as Liveness Detection and Face Recognition. Unfortunately, I have not yet implemented this functionality on iOS. However, I plan to do so in the future when time permits, to support iOS devices.
+*In this blog, I aimed to share my exploration of Mask Detection, which can be helpful for KYC processes involving user face verification, such as Liveness Detection and Face Recognition. Unfortunately, I have not yet implemented this functionality on iOS. However, I plan to do so in the future when time permits, to support iOS devices.*
 
 <br>
-You can find full implement source code in repo :
+
+*You can find full implement source code in repo :*
 
 [https://github.com/horlengg/mask_detector](https://github.com/horlengg/mask_detector)
 
-Thank for reading!.
+*Thank for reading!.*
+
+<br>
+<br>
+<br>
+<br>
