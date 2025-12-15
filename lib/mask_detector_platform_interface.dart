@@ -1,4 +1,4 @@
-import 'dart:typed_data';
+
 import 'package:flutter/services.dart';
 import 'package:mask_detector/models/mask_detection_result.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';

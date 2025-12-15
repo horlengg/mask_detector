@@ -32,9 +32,9 @@ dependencies:
   # face_contour_detector: # ^0.0.1
   #   path : /Users/ly.houleng/Desktop/publish_libs/face_bounding_box_detector
   camera: ^0.11.2+1
-  image: ^4.5.4
-  image_picker: ^1.2.0
-  face_contour_detector: ^0.0.2
+  google_mlkit_face_detection: ^0.13.1
+  screen_brightness: ^2.1.7
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   integration_test:
@@ -48,6 +48,11 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: false
+  image_path: "assets/icon/icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
