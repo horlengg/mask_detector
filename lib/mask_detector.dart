@@ -15,6 +15,7 @@ class MaskDetector {
     required double imageWidth,
     required double imageHeight,
     required Rect faceCountour,
+    required int bytesPerRow,
     int rotation = 0,
   }) {
     return MaskDetectorPlatform.instance.detectMask(
@@ -22,7 +23,8 @@ class MaskDetector {
       imageHeight: imageHeight,
       imageWidth: imageWidth,
       faceCountour: faceCountour,
-      rotation: rotation
+      rotation: rotation,
+      bytesPerRow : bytesPerRow
     );
   }
 

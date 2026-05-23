@@ -41,6 +41,7 @@ class MethodChannelMaskDetector extends MaskDetectorPlatform {
     required double imageWidth,
     required double imageHeight,
     required Rect faceCountour,
+    required int bytesPerRow,
     required int rotation,
   }) async {
     
@@ -50,6 +51,7 @@ class MethodChannelMaskDetector extends MaskDetectorPlatform {
         "imageWidth": imageWidth.toInt(),
         "imageHeight": imageHeight.toInt(),
         "rotation": rotation,
+        'bytesPerRow' : bytesPerRow,
         "faceContour": {
           "left": faceCountour.left.toInt(),
           "top": faceCountour.top.toInt(),

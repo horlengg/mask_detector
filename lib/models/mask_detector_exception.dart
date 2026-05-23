@@ -17,4 +17,9 @@ class MaskDetectorException implements Exception {
     if (details != null) buffer.write('\nDetails: $details');
     return buffer.toString();
   }
+
+  @override
+  String toString() {
+    return what();
+  }
 }

@@ -1,7 +1,3 @@
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint mask_detector.podspec` to validate before publishing.
-#
 Pod::Spec.new do |s|
   s.name             = 'mask_detector'
   s.version          = '0.0.1'
@@ -13,17 +9,25 @@ A new Flutter plugin project.
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Your Company' => 'email@example.com' }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
+  s.source_files     = 'Classes/**/*'
+  s.platform         = :ios, '15.5'
+  s.swift_version    = '5.0'
+
+  s.resource_bundles = {
+    'mask_detector' => ['Resources/**/*']
+  }
+
   s.dependency 'Flutter'
-  s.platform = :ios, '12.0'
+  s.dependency 'TensorFlowLiteSwift', '~> 2.14.0'
 
-  # Flutter.framework does not contain a i386 slice.
-  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
-  s.swift_version = '5.0'
+  # Merged into a single pod_target_xcconfig block
+  s.pod_target_xcconfig = {
+    'DEFINES_MODULE'                       => 'YES',
+    'OTHER_LDFLAGS'                        => '-framework TensorFlowLiteC -all_load',
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+  }
 
-  # If your plugin requires a privacy manifest, for example if it uses any
-  # required reason APIs, update the PrivacyInfo.xcprivacy file to describe your
-  # plugin's privacy impact, and then uncomment this line. For more information,
-  # see https://developer.apple.com/documentation/bundleresources/privacy_manifest_files
-  # s.resource_bundles = {'mask_detector_privacy' => ['Resources/PrivacyInfo.xcprivacy']}
+  s.user_target_xcconfig = {
+    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+  }
 end

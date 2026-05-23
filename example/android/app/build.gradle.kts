@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.lengdev.maskdetector.mask_detector_example"
+    namespace = "com.lengdev.maskdetector"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"
 

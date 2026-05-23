@@ -34,6 +34,7 @@ abstract class MaskDetectorPlatform extends PlatformInterface {
     required double imageWidth,
     required double imageHeight,
     required Rect faceCountour,
+    required int bytesPerRow,
     required int rotation,
   }){
     throw UnimplementedError('detectMask() has not been implemented.');

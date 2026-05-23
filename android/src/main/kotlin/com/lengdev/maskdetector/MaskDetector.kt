@@ -35,7 +35,7 @@ class MaskDetector(private val context: Context) {
      */
     fun initialize() : Boolean {
         try {
-            val modelFile = FileUtil.loadMappedFile(context, "mask_detector.tflite")
+            val modelFile = FileUtil.loadMappedFile(context, "mask_detector_v2.tflite")
             model = Interpreter(modelFile, Interpreter.Options())
 
             // Get input shape to create image processor

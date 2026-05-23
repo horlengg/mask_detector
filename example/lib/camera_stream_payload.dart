@@ -12,6 +12,7 @@ class CameraStreamPayload {
   int rotation;
   InputImage inputImage;
   CameraImage cameraImage;
+  final int bytesPerRow;
 
   CameraStreamPayload({
     required this.inputImage,
@@ -19,7 +20,8 @@ class CameraStreamPayload {
     required this.imageWidth,
     required this.imageHeight,
     required this.rotation,
-    required this.cameraImage
+    required this.cameraImage,
+    required this.bytesPerRow
   });
 
 

@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 import 'package:mask_detector_example/camera_stream_payload.dart';
-import 'package:mask_detector_example/common.dart';
 import 'package:mask_detector_example/device_manager.dart';
+import 'package:mask_detector_example/image_utils.dart';
 
 
 class CameraView extends StatefulWidget {
@@ -170,7 +170,7 @@ class CameraViewState extends State<CameraView> with SingleTickerProviderStateMi
 
     final rotation = _getCameraRotation();
 
-    final yuvBytes = CameraYUVConverter.convertToNV21(image);
+    final yuvBytes = ImageUtils.convertForPlatform(image);
     
     
     final payload = CameraStreamPayload(
@@ -179,7 +179,8 @@ class CameraViewState extends State<CameraView> with SingleTickerProviderStateMi
       imageWidth  : image.width,
       imageHeight : image.height,
       rotation    : rotation,
-      cameraImage : image
+      cameraImage : image,
+      bytesPerRow : image.planes[0].bytesPerRow
     );
     widget.onImage(payload);
 

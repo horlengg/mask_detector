@@ -1,6 +1,4 @@
 
-
-import 'dart:developer';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
@@ -9,8 +7,6 @@ import 'package:mask_detector/models/mask_detection_result.dart';
 import 'package:mask_detector_example/camera_stream_payload.dart';
 import 'package:mask_detector_example/camera_view.dart';
 import 'package:mask_detector_example/face_detector_painter.dart';
-
-
 
 class MaskDetectionView extends StatefulWidget {
   const MaskDetectionView({super.key});
@@ -33,50 +29,54 @@ class _MaskDetectionViewState extends State<MaskDetectionView> {
 
   final GlobalKey<CameraViewState> _cameraViewKey = GlobalKey();
 
+  bool _isProcessing = false;
+
   void _handleDetectMask(CameraStreamPayload payload) async {
-    
-    if(_isWidgetDestroyed) return;
-    
-    final startAt = DateTime.now();
-    try {
+      if (_isWidgetDestroyed) return;
+      if (_isProcessing) return; 
+      
+      _isProcessing = true;
+      
+      // Capture payload locally so it can't be replaced mid-flight
+      final lockedPayload = payload;
+      
+      try {
+          final faces = await _faceDetector.processImage(lockedPayload.inputImage);
+          if (faces.isEmpty) {
+              isNoFaceDetected = true;
+              throw Exception("No face detected");
+          }
 
-      final faces = await _faceDetector.processImage(payload.inputImage);
-      if(faces.isEmpty) {
-        isNoFaceDetected = true;
-        throw Exception("No face detected");
+          
+
+          isNoFaceDetected = false;
+          final bx = faces[0].boundingBox;
+          final faceContour = Rect.fromLTRB(bx.left, bx.top, bx.right, bx.bottom);
+
+          final painter = FaceDetectorPainter(
+            faces,
+            Size(payload.cameraImage.width.toDouble(), payload.cameraImage.height.toDouble()),
+            payload.inputImage.metadata!.rotation,
+            CameraLensDirection.front
+          );
+          _customPaint = CustomPaint(painter: painter);
+
+          _maskResult = await MaskDetector.detect(
+              lockedPayload.yuvBytes,
+              imageWidth  : lockedPayload.imageWidth.toDouble(),
+              imageHeight : lockedPayload.imageHeight.toDouble(),
+              faceCountour: faceContour,
+              rotation    : lockedPayload.rotation,
+              bytesPerRow : lockedPayload.bytesPerRow,
+          );
+          
+      } catch (e) {
+          _maskResult = null;
+          _processDuration = null;
+      } finally {
+          _isProcessing = false;
+          setState(() {});
       }
-
-      isNoFaceDetected = false;
-
-      final bx = faces[0].boundingBox;
-
-      final faceContour = Rect.fromLTRB(bx.left, bx.top, bx.right,bx.bottom);
-
-      final painter = FaceDetectorPainter(
-        faces,
-        Size(payload.cameraImage.width.toDouble(), payload.cameraImage.height.toDouble()),
-        payload.inputImage.metadata!.rotation,
-        CameraLensDirection.front
-      );
-      _customPaint = CustomPaint(painter: painter);
-
-      _maskResult = await MaskDetector.detect(
-        payload.yuvBytes,
-        imageWidth: payload.imageWidth.toDouble(),
-        imageHeight: payload.imageHeight.toDouble(),
-        faceCountour: faceContour,
-        rotation: payload.rotation
-      );
-      log("data : $_maskResult");
-      _processDuration = "${DateTime.now().difference(startAt).inMilliseconds} ms";
-    }
-    catch (e){
-      _maskResult = null;
-      _processDuration = null;
-      log("Error while detect mask : $e");
-    } finally {
-      setState(() {});
-    }
   }
 
   void _initDetection() async {
