@@ -71,6 +71,7 @@ class MethodChannelMaskDetector extends MaskDetectorPlatform {
         hasMask: result["hasMask"] as bool,
         withMaskScore: result["withMaskScore"] as double,
         withoutMaskScore: result["withoutMaskScore"] as double,
+        durationInMilliseconds : result["durationInMilliseconds"]
       );
     } on PlatformException catch (e) {
       throw MaskDetectorException(

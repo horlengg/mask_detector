@@ -85,6 +85,7 @@ class MaskDetectorPlugin: FlutterPlugin, MethodCallHandler {
                 "hasMask" to response.hasMask,
                 "withMaskScore" to String.format("%.4f", response.withMaskScore).toDouble(),
                 "withoutMaskScore" to String.format("%.4f", response.withoutMaskScore).toDouble(),
+                "durationInMilliseconds" to String.format("%.4f", response.durationInMilliseconds).toDouble()
             ))
 
         }

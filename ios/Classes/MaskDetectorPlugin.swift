@@ -109,7 +109,7 @@ public class MaskDetectorPlugin: NSObject, FlutterPlugin {
             "hasMask":          hasMask,
             "withMaskScore":    response.mask,
             "withoutMaskScore": response.withoutMask,
-            "duration":         response.duration
+            "durationInMilliseconds": response.durationInMilliseconds
           ])
       }
     }

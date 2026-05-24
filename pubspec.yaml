@@ -1,6 +1,6 @@
 name: mask_detector
 description: "Flutter plugin that provides mask detection from live feed camera or image."
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/horlengg/mask_detector
 repository: https://github.com/horlengg/mask_detector
 issue_tracker: https://github.com/horlengg/mask_detector/issues

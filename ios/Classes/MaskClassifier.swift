@@ -66,7 +66,7 @@ class MaskClassifier {
             return MaskResponse(
                 mask: results[0],
                 withoutMask: results[1],
-                duration: Date().timeIntervalSince(startAt)
+                durationInMilliseconds: Date().timeIntervalSince(startAt) * 1000
             )
         } catch {
             print("Inference error: \(error)")
@@ -119,5 +119,5 @@ class MaskClassifier {
 struct MaskResponse {
     var mask: Float
     var withoutMask: Float
-    var duration: TimeInterval
+    var durationInMilliseconds: TimeInterval
 }

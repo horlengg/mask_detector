@@ -84,6 +84,8 @@ class MaskDetector(private val context: Context) {
         rect: FaceContour
     ): MaskDetectionResult? {
         try {
+
+            val startAt = System.currentTimeMillis()
             // Check if model is initialized
             if (model == null) {
                 Log.e(TAG, "Model not initialized. Call initialize() first.")
@@ -125,6 +127,7 @@ class MaskDetector(private val context: Context) {
                 hasMask = hasMask,
                 withMaskScore = withMask,
                 withoutMaskScore = withoutMask,
+                durationInMilliseconds = (System.currentTimeMillis() - startAt).toFloat()
             )
             
         } catch (e: Exception) {
