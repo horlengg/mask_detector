@@ -26,7 +26,7 @@ class MaskClassifier {
                 .flatMap { Bundle(url: $0) } ?? bundle
 
             guard let modelPath = resourceBundle.path(
-                forResource: "mask_detector_v2",
+                forResource: "mask_detector_v3",
                 ofType: "tflite"
             ) else { 
                 print("mask_detector_v2.tflite not found")
@@ -53,7 +53,7 @@ class MaskClassifier {
         guard let pixelBuffer = preprocessImage(image) else { return nil }
 
         do {
-            let startAt = Date()
+            
 
             try interpreter.copy(pixelBuffer, toInputAt: 0)
             try interpreter.invoke()
@@ -66,7 +66,7 @@ class MaskClassifier {
             return MaskResponse(
                 mask: results[0],
                 withoutMask: results[1],
-                durationInMilliseconds: Date().timeIntervalSince(startAt) * 1000
+                durationInMilliseconds: 0.0
             )
         } catch {
             print("Inference error: \(error)")

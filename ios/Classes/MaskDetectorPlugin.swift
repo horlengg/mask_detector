@@ -82,6 +82,8 @@ public class MaskDetectorPlugin: NSObject, FlutterPlugin {
         return
     }
 
+    let startAt = Date()
+
 
     DispatchQueue.global(qos: .userInitiated).async {
         guard let bitmap = ImageUtils.bgraToUIImage(yuvBytes.data, width: width, height: height, bytesPerRow: bytesPerRow) else {
@@ -109,7 +111,7 @@ public class MaskDetectorPlugin: NSObject, FlutterPlugin {
             "hasMask":          hasMask,
             "withMaskScore":    response.mask,
             "withoutMaskScore": response.withoutMask,
-            "durationInMilliseconds": response.durationInMilliseconds
+            "durationInMilliseconds": Date().timeIntervalSince(startAt) * 1000
           ])
       }
     }
