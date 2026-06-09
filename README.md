@@ -16,7 +16,7 @@ Hello guys!
 <br>
 
 If you would like to test it, please download the APK from the following link : 
-[Download APK](https://tsfr.io/join/t6xts2?id=11139322)
+[Download APK](https://tsfr.io/join/f9u5hy?id=11347182)
 
 ---
 
